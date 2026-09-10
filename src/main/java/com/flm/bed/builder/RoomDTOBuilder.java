@@ -19,7 +19,7 @@ public class RoomDTOBuilder {
                 .build();
     }
 
-    public static List<BedDetailsResponseDTO> buildBedDetailsResponseDTOFromBeds(
+    private static List<BedDetailsResponseDTO> buildBedDetailsResponseDTOFromBeds(
             List<Bed> beds) {
 
         return beds.stream()
