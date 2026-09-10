@@ -6,7 +6,7 @@ import com.flm.bed.model.Room;
 
 public class BedBuilder {
 	
-	public static Bed bedFromBedRequestDto(BedRequestDTO bedRequestDto, Room room) {
+	public static Bed buildBedFromBedRequestDto(BedRequestDTO bedRequestDto, Room room) {
 		return Bed.builder()
 				  .bedNumber(bedRequestDto.getBedNumber())
 				  .room(room)
