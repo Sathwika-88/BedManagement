@@ -4,11 +4,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,7 +18,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "beds")
+@Table(name = "Beds")
+@Builder
 public class Bed {
 	
 	@Id
@@ -33,13 +36,15 @@ public class Bed {
 	
 	@Column(name = "patient_id")
 	private long patientId;
-	
-//	private List<BedAssignmentHistory> bedAssignmentHistory;
 
-	public Bed(Room room, Boolean isOccupied, long patientId) {
+	@OneToMany(mappedBy = "bed", cascade = CascadeType.ALL)
+	private List<BedAssignmentHistory> bedAssignmentHistoryList;
+
+	public Bed(Room room, Boolean isOccupied, long patientId,List<BedAssignmentHistory> bedAssignmentHistoryList) {
 		super();
 		this.room = room;
 		this.isOccupied = isOccupied;
 		this.patientId = patientId;
+		this.bedAssignmentHistoryList = bedAssignmentHistoryList;
 	}
 }
