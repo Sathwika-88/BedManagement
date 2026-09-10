@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "beds")
+@Table(name = "Beds")
 @Builder
 public class Bed {
 	
@@ -35,13 +35,15 @@ public class Bed {
 	
 	@Column(name = "patient_id")
 	private long patientId;
-	
-//	private List<BedAssignmentHistory> bedAssignmentHistory;
 
-	public Bed(Room room, Boolean isOccupied, long patientId) {
+	@OneToMany(mappedBy = "bed", cascade = CascadeType.ALL)
+	private List<BedAssignmentHistory> bedAssignmentHistoryList;
+
+	public Bed(Room room, Boolean isOccupied, long patientId,List<BedAssignmentHistory> bedAssignmentHistoryList) {
 		super();
 		this.room = room;
 		this.isOccupied = isOccupied;
 		this.patientId = patientId;
+		this.bedAssignmentHistoryList = bedAssignmentHistoryList;
 	}
 }
