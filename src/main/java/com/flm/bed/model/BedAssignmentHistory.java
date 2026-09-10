@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -27,6 +28,10 @@ public class BedAssignmentHistory {
 	private LocalDateTime assignedAt;
 	
 	private LocalDateTime vacatedAt;
+
+	@ManyToOne
+	@JoinColumn(name = "bed_Number", nullable = false)
+	private Bed bed;
 	
 	
 }
