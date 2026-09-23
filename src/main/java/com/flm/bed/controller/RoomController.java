@@ -2,6 +2,8 @@ package com.flm.bed.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,5 +23,8 @@ public class RoomController {
     {
 return roomService.addRoom( roomRequestDTO);
     }
-
+@DeleteMapping ("/delete-room/{roomNumber}")
+public ResponseEntity<Boolean> deleteRoom(@PathVariable Long roomNumber) {
+    return roomService.removeRoom(roomNumber);
+}
 }

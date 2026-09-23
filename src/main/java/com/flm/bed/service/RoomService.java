@@ -9,6 +9,8 @@ import com.flm.bed.dto.RoomRequestDTO;
 public interface RoomService {
 
     public ResponseEntity<RoomDetailsResponseDTO> addRoom(RoomRequestDTO roomRequestDTO);
+
+    public ResponseEntity<Boolean> removeRoom(Long roomNumber);
  
 
 }
