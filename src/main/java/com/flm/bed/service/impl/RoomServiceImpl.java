@@ -13,6 +13,7 @@ import com.flm.bed.builder.RoomDTOBuilder;
 import com.flm.bed.dao.RoomRepository;
 import com.flm.bed.dto.BedRequestDTO;
 import com.flm.bed.dto.RoomRequestDTO;
+import com.flm.bed.exceptions.RoomNotFoundException;
 import com.flm.bed.model.Bed;
 import com.flm.bed.model.Room;
 import com.flm.bed.service.RoomService;
@@ -45,5 +46,17 @@ public class RoomServiceImpl implements RoomService{
         HttpStatus.CREATED
 );
     }
+
+    @Override
+public ResponseEntity<Boolean> removeRoom(Long roomNumber) {
+
+    Room room = roomRepository.findById(roomNumber)
+            .orElseThrow(() ->
+                    new RoomNotFoundException("Room not found with " + roomNumber));
+
+    roomRepository.delete(room);
+
+    return new ResponseEntity<>(true, HttpStatus.OK);
+}
     
 }
